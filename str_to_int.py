@@ -1,32 +1,22 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
-        if s[1].isalpha() or s[0].isalpha():
+        ls = list(s.strip())
+
+        if len(ls) == 0:
             return 0
 
-        MIN, MAX = -2 ** 31, 2**31 - 1
+        sign = -1 if ls[0] == '-' else 1
 
-        clean_str = [char for char in s if char.isdigit() or char == '-' or char == '.']
-        try:
-            clean_str = clean_str[:clean_str.index('.')]
-        except:
-            pass
+        if ls[0] in ['-','+']:
+            del ls[0]
 
-        sign = -1 if clean_str[0] == '-' else 1
-        if sign == -1:
-            clean_str.remove('-')
-        answer = 0
-        for idx, s in enumerate(clean_str[::-1]):
-            answer += int(s) * (10 ** idx)
-
-        answer *= sign
-        if answer > MAX:
-            return MAX
-        if answer < MIN:
-            return MIN
-
-        return answer
-
+        answer, i = 0, 0
+        while i < len(ls) and ls[i].isdigit():
+            answer = answer * 10 + ord(ls[i]) - ord('0')
+            i += 1
         
+        return max(-2**31, min(sign * answer,2**31-1))
+
 
 s = Solution()
-print(s.myAtoi('42'))
+print(s.myAtoi(' '))

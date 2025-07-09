@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(hIndex([]int{3, 0, 6, 1, 5}))
+	fmt.Println(productExceptSelf([]int{1, 2, 3, 4}))
 }

@@ -7,18 +7,17 @@ func romanToInt(s string) int {
 	result := 0
 
 	for i := 0; i < len(s); i++ {
-		if i+1 == len(s) {
+		if i == len(s)-1 {
 			result += d[s[i]]
 			break
 		}
 
-		if d[s[i]] < d[s[i+1]] {
+		if d[s[i]] >= d[s[i+1]] {
+			result += d[s[i]]
+		} else {
 			result += d[s[i+1]] - d[s[i]]
 			i++
-			continue
 		}
-
-		result += d[s[i]]
 	}
 
 	return result

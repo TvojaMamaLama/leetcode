@@ -1,22 +1,13 @@
 package main
 
-import "fmt"
-
 func isSubsequence(s string, t string) bool {
-	if s == "" {
-		return true
-	}
-
-	pointer := 0
-	for i := 0; i < len(t); i++ {
-		if s[pointer] == t[i] {
-			pointer++
-			fmt.Println(i, pointer)
-			if pointer == len(s) {
-				return true
-			}
+	i, j := 0, 0
+	for i < len(s) && j < len(t) {
+		if s[i] == t[j] {
+			i++
 		}
+		j++
 	}
 
-	return false
+	return i == len(s)
 }
